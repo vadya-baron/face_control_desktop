@@ -1,0 +1,2 @@
+from .statistic_screen import StatisticScreenView
+from .statistic_today_screen import StatisticTodayScreenView

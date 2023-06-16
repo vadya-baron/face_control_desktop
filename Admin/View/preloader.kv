@@ -1,0 +1,29 @@
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<Preloader>:
+    md_bg_color: app.theme_cls.bg_normal
+    mane: 'Preloader'
+    on_enter: self.ids.progress.start()
+
+
+
+    MDBoxLayout:
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        md_bg_color: '#FAFAFA'
+        width: '400dp'
+        size_hint: None, .2
+        orientation: 'vertical'
+
+        MDLabel:
+            text: 'Загрузка...'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            halign: 'center'
+            font_style: 'H3'
+
+        MDBoxLayout:
+            MDProgressBar:
+                id: progress
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                type: 'determinate' # indeterminate determinate
+                running_transition: 'in_cubic'
+                size_hint_y: .05
