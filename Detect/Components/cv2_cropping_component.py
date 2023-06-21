@@ -28,16 +28,15 @@ class Cropping:
 
     def cropping(self, image: np.ndarray) -> (np.ndarray, list):
         faces = self._face_cascade.detectMultiScale(image)
-        face = np.ndarray(())
+        face = np.ndarray([])
         messages = []
 
         if len(faces) == 0:
-            messages.append('no_face')
-            return np.ndarray(()), messages
+            return np.ndarray([]), messages
 
         if len(faces) > 1:
             messages.append('only_one_face')
-            return np.ndarray(()), messages
+            return np.ndarray([]), messages
 
         for x, y, width, height in faces:
             cropped = image[y:y + height, x:x + width]

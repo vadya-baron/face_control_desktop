@@ -193,11 +193,11 @@ class DataBaseHandler:
 
         return result
 
-    def get_vectors(self, persons_ids: list) -> list[dict]:
-        if persons_ids is None or len(persons_ids) == 0:
+    def get_vectors(self, employees_ids: list) -> list[dict]:
+        if employees_ids is None or len(employees_ids) == 0:
             return []
 
-        join_ids = ','.join(persons_ids)
+        join_ids = ','.join([str(i) for i in employees_ids])
         query = "WHERE employee_id IN (" + join_ids + ")"
 
         vectors = []

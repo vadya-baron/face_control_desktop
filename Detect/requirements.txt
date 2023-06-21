@@ -1,0 +1,10 @@
+kivy==2.2.0
+kivymd==1.1.1
+pyyaml
+pillow
+multitasking
+watchdog
+opencv-python
+numpy
+face_recognition
+cryptography

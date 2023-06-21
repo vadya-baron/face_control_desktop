@@ -1,0 +1,39 @@
+SERVICE:
+  name: Название проекта
+  secret_key: test_key
+  capture_input: 0
+  capture_width: 800
+  capture_height: 600
+  detect_interval: 30 # указывать в кадрах в секунду
+  debug: 1
+  crop_size_width: 120
+  crop_size_height: # Если пусто, будет найдено пропорциональное значение.
+  min_time_between_rec: 60 # Минимальное время между записью сотрудника. По умолчанию 60 сек. Ед. изм. в секундах
+  export_path: ../files/export/
+  logs_path: ./logs/
+CROPPING_CONFIG:
+  filling: 40
+  cascade: ./config/cv2/lbpcascades/lbpcascade_frontalface.xml
+  crop_size_width: 120
+  crop_size_height: # Если пусто, будет найдено пропорциональное значение.
+  dataset_path: ../files/dataset/ # Папка, куда сохраняется результат работы cropping
+DB_CONFIG:
+  db_dir: ../db/
+  backup_db_dir: ../db/backup/
+  dump_db_path: ./assets/dumps/dump.sql
+  dbname: face_control
+EMPLOYEES_CONFIG:
+  person_display_path: ../files/persons/
+RECOGNITION_COMPONENT:
+  tolerance: 0.5
+LANGUAGE:
+  only_one_face: Идентификация проходит только по очереди
+  no_data: Нет данных
+  no_face: Не получается определить лицо на фото
+  recognition_success: Проходите
+  unknown_person: Не могу вас определить. Подойдите ближе или дальше.
+  confirmed_person: Личность подтверждена.
+  access_denied: Доступ запрещен.
+  unknown_data_format: Неизвестный формат данных
+  invalid_date_format: Неверный формат даты
+  contact_the_technical_department: Обратитесь в технический отдел
