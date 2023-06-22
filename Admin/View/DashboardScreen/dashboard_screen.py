@@ -1,5 +1,7 @@
 from typing import NoReturn, Union
 
+from kivy.clock import Clock
+
 from View.DashboardScreen.components import ScreenData
 from View import BaseScreenView
 from View.components import AppDialog, AppToast
@@ -15,6 +17,7 @@ class DashboardScreenView(BaseScreenView):
         self.toast = AppToast()
         # self.loading_dialog.bind(on_dismiss=self.controller.reset_data)
         self.model.add_observer(self)
+        self.this_clock = Clock
 
     def show_dialog_wait(self) -> NoReturn:
         """Отображает диалоговое окно ожидания, пока модель обрабатывает данные."""
@@ -37,9 +40,13 @@ class DashboardScreenView(BaseScreenView):
 
     def on_enter(self):
         self.controller.reset_data()
-        data = self.controller.get_data()
         self.main_container = self.manager_screens.children[0].children[0].ids.screen_manager.children[0].ids.container
+        self.load_data()
+        self.this_clock.schedule_interval(self.load_data, 10)
 
+    def load_data(self, *args):
+        self.controller.reset_data()
+        data = self.controller.get_data()
         self.main_container.clear_widgets()
         self.main_container.add_widget(
             ScreenData(

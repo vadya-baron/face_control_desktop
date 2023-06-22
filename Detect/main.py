@@ -103,5 +103,11 @@ class Detect(MDApp):
             logging.exception(e)
             exit(1)
 
+    # При приеме видео потока и одновременном изменении размера окна, приложение падает
+    # @staticmethod
+    # def on_resize():
+    #     print('on_resize')
+    #     Detect().run()
+
 
 Detect().run()

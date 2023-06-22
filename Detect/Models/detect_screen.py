@@ -60,7 +60,12 @@ class DetectScreenModel(BaseScreenModel):
                 'date_from': '{date:%Y-%m-%d 00:00:00}'.format(date=datetime.datetime.now())
             })
 
-            if last_visit.get('direction', 1) == 1:
+            if last_visit is None:
+                direction = 0
+            else:
+                direction = last_visit.get('direction')
+
+            if direction is None or direction == 1:
                 direction = 0
             else:
                 direction = 1
