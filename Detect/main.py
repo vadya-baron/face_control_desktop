@@ -3,6 +3,7 @@ from kivy import Config
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivy.utils import platform
+from kivymd.icon_definitions import md_icons
 from kivy.core.window import Window
 import yaml
 import logging

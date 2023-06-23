@@ -5,11 +5,11 @@ import cv2
 from kivy.clock import Clock
 from kivy.core.image import Texture
 from kivy.core.window import Window
-from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
+from kivymd.uix.bottomnavigation import MDBottomNavigation
 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDRectangleFlatIconButton
-from kivymd.uix.card import MDCard
+from kivymd.icon_definitions import md_icons
 from kivymd.uix.label import MDLabel
 from kivy.uix.image import Image
 
