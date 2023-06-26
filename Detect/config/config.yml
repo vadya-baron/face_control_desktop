@@ -1,6 +1,6 @@
 SERVICE:
-  name: Название проекта
-  secret_key: test_key
+  name: Пилигрим
+  secret_key: 78156_96ecbf1c_96e6_894b7
   capture_input: 0
   capture_width: 800
   capture_height: 600

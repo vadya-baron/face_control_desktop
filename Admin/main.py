@@ -8,6 +8,8 @@ from kivy.core.window import Window
 from kivy.clock import Clock
 import yaml
 import logging
+import codecs
+
 
 from View import Preloader
 from View.screens import screens
@@ -17,7 +19,7 @@ realpath = Path(Path.cwd())
 if platform == 'android' or platform == 'ios':
     Window.maximize()
 else:
-    Window.size = (1280, 900)
+    Window.size = (1024, 768)
 
 
 class Admin(MDApp):
@@ -37,14 +39,24 @@ class Admin(MDApp):
         self.cropping = None
         self.recognition = None
 
-        self.config_path = Path(realpath, 'config', 'config.yml')
+        try:
+            if platform == 'win':
+                self.config_path = Path(realpath, 'config', 'win-config.yml')
+                config_file = codecs.open(str(self.config_path), 'r', 'UTF-8')
+                self.app_config = yaml.safe_load(config_file)
+                config_file.close()
+            else:
+                self.config_path = Path(realpath, 'config', 'config.yml')
+                with open(self.config_path) as config_file:
+                    self.app_config = yaml.safe_load(config_file)
+        except Exception as e:
+            logging.exception(e)
+            exit(1)
+
         self.icon_path = Path(realpath, 'assets', 'images', 'icon-w.png')
 
         Config.set('kivy', 'window_icon', self.icon_path)
         Window.bind(on_close=self.on_stop)
-
-        with open(self.config_path) as config_file:
-            self.app_config = yaml.safe_load(config_file)
 
         if self.app_config is None:
             print('Файл с конфигурацией не найден')

@@ -310,6 +310,7 @@ class DataBaseHandler:
     def backup_db(self):
         self._conn.close()
         backup_dir = self._db_backup_dir + self.get_time()
+        backup_dir = backup_dir.replace(' ', '_').replace(':', '-')
         try:
             Path(str(backup_dir)).mkdir(parents=True, exist_ok=True)
             shutil.copyfile(self._db_path, Path(backup_dir, self._db_name))
@@ -405,3 +406,7 @@ class DataBaseHandler:
             limit_offset = limit_offset + " OFFSET " + str(offset)
 
         return query, limit_offset
+
+
+def get_dir_name() -> str:
+    time_dir = get_time()
